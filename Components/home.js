@@ -54,7 +54,7 @@ function HomeScreen() {
                 />
             </View>
             <TouchableOpacity
-                style={[styles.button, { opacity: isFormValid ? 1 : 0.5 }]}
+                style={{ opacity: isFormValid ? 1 : 0.5 }}
                 disabled={!isFormValid}
                 onPress={handleSubmit}>
                 <View>
@@ -89,14 +89,14 @@ const styles = StyleSheet.create({
         borderRadius: 8,
         fontSize: 16,
     },
-    button: {
-        backgroundColor: 'green',
-        borderRadius: 8,
-        paddingVertical: 10,
-        alignItems: 'center',
-        marginTop: 16,
-        marginBottom: 12,
-    },
+    // button: {
+    //     backgroundColor: 'green',
+    //     borderRadius: 8,
+    //     paddingVertical: 10,
+    //     alignItems: 'center',
+    //     marginTop: 16,
+    //     marginBottom: 12,
+    // },
     
     error: {
         color: 'red',
