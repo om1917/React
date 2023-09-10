@@ -35,7 +35,7 @@ function HomeScreen() {
     const handleSubmit = () => {
         if (isFormValid) {
             if (username == "Admin123" && password == "Test@1234") {
-                navigation.navigate('List', { someValue: "Hello from Home!" })
+                navigation.navigate('List', { someValue: "Hello from Home!" });
             }
             else {
                 setModalVisible(true);
@@ -83,11 +83,9 @@ function HomeScreen() {
                 style={{ opacity: isFormValid ? 1 : 0.5 }}
                 disabled={!isFormValid}
                 onPress={handleSubmit}>
-                <Text>Submit</Text>
-                {/* <View>
-                    <Button title="" onPress={onBtnPress}></Button>
-                </View> */}
-
+                <View style={styles.submitButton}>
+                    <Text>Submit</Text>
+                </View>
             </TouchableOpacity>
 
             {/* Display error messages */}
@@ -97,8 +95,6 @@ function HomeScreen() {
                 </Text>
             ))}
         </View>
-
-
     );
 }
 const styles = StyleSheet.create({
@@ -116,15 +112,15 @@ const styles = StyleSheet.create({
         borderRadius: 8,
         fontSize: 16,
     },
-    // button: {
-    //     backgroundColor: 'green',
-    //     borderRadius: 8,
-    //     paddingVertical: 10,
-    //     alignItems: 'center',
-    //     marginTop: 16,
-    //     marginBottom: 12,
-    // },
-
+    
+    submitButton:{
+        backgroundColor: 'green',
+        borderRadius: 8,
+        paddingVertical: 10,
+        alignItems: 'center',
+        marginTop: 16,
+        marginBottom: 12
+    },
     error: {
         color: 'red',
         fontSize: 20,
@@ -140,13 +136,11 @@ const styles = StyleSheet.create({
         padding: 5,
         marginTop: 10
     },
-
     modalText: {
         marginBottom: 15,
         textAlign: 'center',
         color: 'red',
         fontSize: 20,
-
     },
     buttonClose: {
         width: 200,
