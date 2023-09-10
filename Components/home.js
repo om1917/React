@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, TextInput, SafeAreaView, Button, TouchableOpacity } from 'react-native';
+import { StyleSheet,Pressable,Modal, Text, View, TextInput, SafeAreaView, Button, TouchableOpacity } from 'react-native';
 
 function HomeScreen() {
     const navigation = useNavigation();
@@ -9,9 +9,11 @@ function HomeScreen() {
     const [password, setEmail] = useState('');
     const [errors, setErrors] = useState({});
     const [isFormValid, setIsFormValid] = useState(false);
+    const [modalVisible, setModalVisible] = useState(false);
     const onBtnPress = () => {
+     
         // Navigate to AnotherScreen and pass a value as a route parameter
-        navigation.navigate('List', { someValue: "Hello from Home!" })
+        
     };
     useEffect(() => {
         validateForm();
@@ -32,14 +34,38 @@ function HomeScreen() {
 
     const handleSubmit = () => {
         if (isFormValid) {
-            console.log('Form submitted successfully!');
+            if(username=="Admin123" && password=="Test@1234"){
+                navigation.navigate('List', { someValue: "Hello from Home!" })
+            }
+            else{
+                setModalVisible(true);
+            }
         } else {
             console.log('Form has errors. Please correct them.');
         }
     };
     return (
         <View style={styles.container}>
-            <Text style={styles.Heading}>Bai-Khata</Text>
+             <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => {
+          Alert.alert('Modal has been closed.');
+          setModalVisible(!modalVisible);
+        }}>
+        <View style={styles.centeredView}>
+          <View style={styles.modalView}>
+            <Text style={styles.modalText}>Invalid Credentials</Text>
+            <Pressable
+              style={[styles.button, styles.buttonClose]}
+              onPress={() => setModalVisible(!modalVisible)}>
+              <Text style={styles.textStyle}>Try Again</Text>
+            </Pressable>
+          </View>
+        </View>
+      </Modal>
+            <Text style={styles.Heading}>Bahi-Khata</Text>
             <View style={styles.Textbox}>
                 <TextInput placeholder="Enter Username"
                     value={username}
@@ -57,9 +83,10 @@ function HomeScreen() {
                 style={{ opacity: isFormValid ? 1 : 0.5 }}
                 disabled={!isFormValid}
                 onPress={handleSubmit}>
-                <View>
-                    <Button title="Submit" onPress={onBtnPress}></Button>
-                </View>
+                    <Text>Submit</Text>
+                {/* <View>
+                    <Button title="" onPress={onBtnPress}></Button>
+                </View> */}
 
             </TouchableOpacity>
 
@@ -112,7 +139,49 @@ const styles = StyleSheet.create({
         margin: 4,
         padding: 5,
         marginTop: 10
-    }
+    },
+    
+  modalText: {
+    marginBottom: 15,
+    textAlign: 'center',
+    color:'red',
+    fontSize:20,
+
+  },
+  buttonClose: {
+    width:200,
+    color:'green',
+    backgroundColor: 'green',
+  },
+  modalView: {
+    margin: 20,
+    backgroundColor: 'white',
+    borderRadius: 20,
+    padding: 35,
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+  },
+  buttonOpen: {
+    backgroundColor: '#F194FF',
+  },
+  centeredView: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 22,
+  },
+  textStyle: {
+    color: 'white',
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
 });
 
 export default HomeScreen;
