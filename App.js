@@ -1,142 +1,131 @@
 import { StatusBar } from 'expo-status-bar';
-import {useState,useEffect} from 'react';
-import { StyleSheet, Text, View,TextInput ,SafeAreaView,Button,TouchableOpacity} from 'react-native';
+import { useState, useEffect } from 'react';
+import { StyleSheet, Text, View, TextInput, SafeAreaView, Button, TouchableOpacity } from 'react-native';
 
 export default function App() {
-  // return (
-  //   <View style={styles.container}>
-  //     <Text>Open up App.js to start working on your app!  Satyam</Text>
-  //     <Header/>
-  //     <Login/>
-    
-  //     <StatusBar style="auto" />
-  //   </View>
-  // );
   const [username, setName] = useState('');
   const [password, setEmail] = useState('');
   const [errors, setErrors] = useState({});
-    const [isFormValid, setIsFormValid] = useState(false);
+  const [isFormValid, setIsFormValid] = useState(false);
   useEffect(() => {
-  
-    // Trigger form validation when name, 
-    // email, or password changes
+
+
     validateForm();
-}, [username, password]);
-const validateForm = () => {
-  let errors = {};
-
-  // Validate name field
-  if (!username) {
-      errors.username = 'username is required.';
-  }
+  }, [username, password]);
+  const validateForm = () => {
+    let errors = {};
 
 
-  // Validate password field
-  if (!password) {
-      errors.password = 'Password is required.';
-  } else if (password.length < 6) {
+    if (!username) {
+      errors.username = 'Username is Required.';
+    }
+
+
+
+    if (!password) {
+      errors.password = 'Password is Required.';
+    } else if (password.length < 6) {
       errors.password = 'Password must be at least 6 characters.';
-  }
+    }
 
-  // Set the errors and update form validity
-  setErrors(errors);
-  setIsFormValid(Object.keys(errors).length === 0);
-};
 
-const handleSubmit = () => {
-  if (isFormValid) {
-debugger
-      // Form is valid, perform the submission logic
+    setErrors(errors);
+    setIsFormValid(Object.keys(errors).length === 0);
+  };
+
+  const handleSubmit = () => {
+    if (isFormValid) {
+
       console.log('Form submitted successfully!');
-  } else {
-        
-      // Form is invalid, display error messages
+    } else {
+
+
       console.log('Form has errors. Please correct them.');
-  }
-};
+    }
+  };
   return (
-    // <View>
-    //   <Text>Login</Text>
-    //   <TextInput>User Name:</TextInput>
-
-    //   <TextInput>Password:</TextInput>
-    // </View>
     
-        <View style={styles.container}>
-          <Text style={styles.Heading}> Bai-Khata</Text>
-            <TextInput placeholder="enter Username"
-                value={username}
-                onChangeText={setName}
-               // onChangeText={(text) => setMessage(text)}
-                //onSubmitEditing={() => alert(`Welcome to ${message}`)}
-            />
- 
-           <TextInput
-          
-                placeholder="enter your Password"
-                value={password}
-                onChangeText={setEmail}
-               // onChangeText={(text) => setMessage(text)}
-                //onSubmitEditing={() => alert(`Welcome to ${message}`)}
-            />
-             <TouchableOpacity
-                style={[styles.button, { opacity: isFormValid ? 1 : 0.5 }]}
-                disabled={!isFormValid}
-                onPress={handleSubmit}
-            >
-                <Text style={styles.buttonText}>Submit</Text>
-            </TouchableOpacity>
-              
-            {/* Display error messages */}
-            {Object.values(errors).map((error, index) => (
-                <Text key={index} style={styles.error}>
-                    {error}
-                </Text>
-            ))}
 
-        </View>
+    <View style={styles.container}>
+      <Text style={styles.Heading}>             Bai-Khata</Text>
+      <View style={styles.Textbox}>
+        <TextInput placeholder="Enter Username"
+          value={username}
+          onChangeText={setName}
+        />
+      </View>
+      <View style={styles.Textbox}>
+        <TextInput
+          placeholder="Enter your Password"
+          value={password}
+          onChangeText={setEmail}
+        />
+      </View>
 
-        
-    );
+
+      <TouchableOpacity
+        style={[styles.button, { opacity: isFormValid ? 1 : 0.5 }]}
+        disabled={!isFormValid}
+        onPress={handleSubmit}
+      >
+        <Text style={styles.buttonText}>Submit</Text>
+      </TouchableOpacity>
+
+      {/* Display error messages */}
+      {Object.values(errors).map((error, index) => (
+        <Text key={index} style={styles.error}>
+          {error}
+        </Text>
+      ))}
+
+    </View>
+
+
+  );
 }
 const styles = StyleSheet.create({
   container: {
-      flex: 1,
-      padding: 16,
-      justifyContent: 'center',
+    flex: 1,
+    padding: 16,
+    justifyContent: 'center',
   },
   input: {
-      height: 60,
-      borderColor: '#ccc',
-      borderWidth: 1,
-      marginBottom: 12,
-      paddingHorizontal: 10,
-      borderRadius: 8,
-      fontSize: 16,
+    height: 60,
+    borderColor: '#ccc',
+    borderWidth: 1,
+    marginBottom: 12,
+    paddingHorizontal: 10,
+    borderRadius: 8,
+    fontSize: 16,
   },
   button: {
-      backgroundColor: 'green',
-      borderRadius: 8,
-      paddingVertical: 10,
-      alignItems: 'center',
-      marginTop: 16,
-      marginBottom: 12,
+    backgroundColor: 'green',
+    borderRadius: 8,
+    paddingVertical: 10,
+    alignItems: 'center',
+    marginTop: 16,
+    marginBottom: 12,
   },
   buttonText: {
-      color: '#fff',
-      fontWeight: 'bold',
-      fontSize: 16,
+    color: '#fff',
+    fontWeight: 'bold',
+    fontSize: 16,
   },
   error: {
-      color: 'red',
-      fontSize: 20,
-      marginBottom: 12,
+    color: 'red',
+    fontSize: 20,
+    marginBottom: 12,
   },
-  Heading:{
+  Heading: {
+    display: 'flex',
     alignItems: 'center',
-    color:'green',
-   // fontWeight: 'bold',
+    color: 'green',
     fontSize: 30,
+  },
+  Textbox: {
+    margin: 4,
+    padding: 5,
+    marginTop: 10
   }
 });
 
