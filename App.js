@@ -47,7 +47,7 @@ export default function App() {
     
 
     <View style={styles.container}>
-      <Text style={styles.Heading}>             Bai-Khata</Text>
+      <Text style={styles.Heading}>Bai-Khata</Text>
       <View style={styles.Textbox}>
         <TextInput placeholder="Enter Username"
           value={username}
@@ -116,9 +116,8 @@ const styles = StyleSheet.create({
     fontSize: 20,
     marginBottom: 12,
   },
-  Heading: {
-    display: 'flex',
-    alignItems: 'center',
+  Heading: {    
+    marginLeft:100,
     color: 'green',
     fontSize: 30,
   },
