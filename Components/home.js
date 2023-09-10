@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { useState, useEffect } from 'react';
-import { StyleSheet,Pressable,Modal, Text, View, TextInput, SafeAreaView, Button, TouchableOpacity } from 'react-native';
+import { StyleSheet, Pressable, Modal, Text, View, TextInput, SafeAreaView, Button, TouchableOpacity } from 'react-native';
 
 function HomeScreen() {
     const navigation = useNavigation();
@@ -11,9 +11,9 @@ function HomeScreen() {
     const [isFormValid, setIsFormValid] = useState(false);
     const [modalVisible, setModalVisible] = useState(false);
     const onBtnPress = () => {
-     
+
         // Navigate to AnotherScreen and pass a value as a route parameter
-        
+
     };
     useEffect(() => {
         validateForm();
@@ -34,10 +34,10 @@ function HomeScreen() {
 
     const handleSubmit = () => {
         if (isFormValid) {
-            if(username=="Admin123" && password=="Test@1234"){
+            if (username == "Admin123" && password == "Test@1234") {
                 navigation.navigate('List', { someValue: "Hello from Home!" })
             }
-            else{
+            else {
                 setModalVisible(true);
             }
         } else {
@@ -46,25 +46,25 @@ function HomeScreen() {
     };
     return (
         <View style={styles.container}>
-             <Modal
-        animationType="slide"
-        transparent={true}
-        visible={modalVisible}
-        onRequestClose={() => {
-          Alert.alert('Modal has been closed.');
-          setModalVisible(!modalVisible);
-        }}>
-        <View style={styles.centeredView}>
-          <View style={styles.modalView}>
-            <Text style={styles.modalText}>Invalid Credentials</Text>
-            <Pressable
-              style={[styles.button, styles.buttonClose]}
-              onPress={() => setModalVisible(!modalVisible)}>
-              <Text style={styles.textStyle}>Try Again</Text>
-            </Pressable>
-          </View>
-        </View>
-      </Modal>
+            <Modal
+                animationType="slide"
+                transparent={true}
+                visible={modalVisible}
+                onRequestClose={() => {
+                    Alert.alert('Modal has been closed.');
+                    setModalVisible(!modalVisible);
+                }}>
+                <View style={styles.centeredView}>
+                    <View style={styles.modalView}>
+                        <Text style={styles.modalText}>Invalid Credentials</Text>
+                        <Pressable
+                            style={[styles.button, styles.buttonClose]}
+                            onPress={() => setModalVisible(!modalVisible)}>
+                            <Text style={styles.textStyle}>Try Again</Text>
+                        </Pressable>
+                    </View>
+                </View>
+            </Modal>
             <Text style={styles.Heading}>Bahi-Khata</Text>
             <View style={styles.Textbox}>
                 <TextInput placeholder="Enter Username"
@@ -83,7 +83,7 @@ function HomeScreen() {
                 style={{ opacity: isFormValid ? 1 : 0.5 }}
                 disabled={!isFormValid}
                 onPress={handleSubmit}>
-                    <Text>Submit</Text>
+                <Text>Submit</Text>
                 {/* <View>
                     <Button title="" onPress={onBtnPress}></Button>
                 </View> */}
@@ -124,7 +124,7 @@ const styles = StyleSheet.create({
     //     marginTop: 16,
     //     marginBottom: 12,
     // },
-    
+
     error: {
         color: 'red',
         fontSize: 20,
@@ -140,48 +140,48 @@ const styles = StyleSheet.create({
         padding: 5,
         marginTop: 10
     },
-    
-  modalText: {
-    marginBottom: 15,
-    textAlign: 'center',
-    color:'red',
-    fontSize:20,
 
-  },
-  buttonClose: {
-    width:200,
-    color:'green',
-    backgroundColor: 'green',
-  },
-  modalView: {
-    margin: 20,
-    backgroundColor: 'white',
-    borderRadius: 20,
-    padding: 35,
-    alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
+    modalText: {
+        marginBottom: 15,
+        textAlign: 'center',
+        color: 'red',
+        fontSize: 20,
+
     },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 5,
-  },
-  buttonOpen: {
-    backgroundColor: '#F194FF',
-  },
-  centeredView: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: 22,
-  },
-  textStyle: {
-    color: 'white',
-    fontWeight: 'bold',
-    textAlign: 'center',
-  },
+    buttonClose: {
+        width: 200,
+        color: 'green',
+        backgroundColor: 'green',
+    },
+    modalView: {
+        margin: 20,
+        backgroundColor: 'white',
+        borderRadius: 20,
+        padding: 35,
+        alignItems: 'center',
+        shadowColor: '#000',
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 4,
+        elevation: 5,
+    },
+    buttonOpen: {
+        backgroundColor: '#F194FF',
+    },
+    centeredView: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 22,
+    },
+    textStyle: {
+        color: 'white',
+        fontWeight: 'bold',
+        textAlign: 'center',
+    },
 });
 
 export default HomeScreen;
