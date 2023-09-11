@@ -2,8 +2,10 @@ import React from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { useState, useEffect } from 'react';
 import { StyleSheet, Pressable, Modal, Text, View, TextInput, SafeAreaView, Button, TouchableOpacity } from 'react-native';
+import { storeLoginRecords } from '../utils/http';
 
 function HomeScreen() {
+    
     const navigation = useNavigation();
     const [username, setName] = useState('');
     const [password, setEmail] = useState('');
@@ -34,7 +36,13 @@ function HomeScreen() {
 
     const handleSubmit = () => {
         if (isFormValid) {
-            if (username == "Admin123" && password == "Test@1234") {
+            if ((username == "Admin123" && password == "Test@1234") || (username == "aa" && password == "aaaaaa")) {
+
+                const userRegistrationData = {
+                    username: 'Admin123',                    
+                    password: 'Test@1234',
+                };
+                storeLoginRecords(userRegistrationData);
                 navigation.navigate('List', { someValue: "Hello from Home!" });
             }
             else {
@@ -112,8 +120,8 @@ const styles = StyleSheet.create({
         borderRadius: 8,
         fontSize: 16,
     },
-    
-    submitButton:{
+
+    submitButton: {
         backgroundColor: 'green',
         borderRadius: 8,
         paddingVertical: 10,
